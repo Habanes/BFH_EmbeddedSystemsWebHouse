@@ -1,0 +1,31 @@
+# Makefile für den Hardware-Test
+
+# Compiler und Flags
+CC = gcc
+CFLAGS = -Wall -I. 
+# WICHTIG: Hier müssen die Libraries gelinkt werden (-lbcm2835 -lpthread)
+LIBS = -lbcm2835 -lpthread
+
+# Ziel-Datei (Executable)
+TARGET = TestHardware
+
+# Quellcode-Dateien
+# Wir brauchen test_hardware.c und die Implementierung Webhouse.c
+SRCS = test_hardware.c Webhouse.c
+
+# Objekt-Dateien (werden automatisch aus SRCS abgeleitet)
+OBJS = $(SRCS:.c=.o)
+
+# Standard-Regel: Das Programm bauen
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) -o $(TARGET) $(OBJS) $(LIBS)
+
+# Kompilieren der .c Dateien zu .o Dateien
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Aufräumen
+clean:
+	rm -f $(TARGET) *.o

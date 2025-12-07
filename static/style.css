@@ -1,0 +1,123 @@
+/* Grundlayout und Dark Mode Farben */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212; /* Sehr dunkles Grau als Hintergrund */
+    color: #e0e0e0; /* Helles Grau für Text */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: #1e1e1e; /* Karten-Hintergrund */
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+#status {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.section {
+    background-color: #252526;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #3d3d3d; /* Akzentlinie links */
+    border-bottom: 2.3px solid #3d3d3d; /* Akzentlinie links */
+}
+
+h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #90caf9; /* Dezentes Blau für Überschriften */
+}
+
+.control-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.control-label {
+    font-size: 15px;
+}
+
+/* Temperatur Anzeige */
+#tempDisplay {
+    font-size: 36px;
+    font-weight: 300;
+    text-align: center;
+    color: #fff;
+    margin: 20px 0;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    color: #fff;
+    font-weight: 600;
+    min-width: 80px;
+}
+
+button.on {
+    background-color: #2e7d32; /* Gedämpftes Grün */
+}
+button.on:hover {
+    background-color: #388e3c;
+}
+button.on:active {
+    background-color: #1b5e20;
+}
+
+button.off {
+    background-color: #c62828; /* Gedämpftes Rot */
+    margin-left: 5px;
+}
+button.off:hover {
+    background-color: #d32f2f;
+}
+button.off:active {
+    background-color: #b71c1c;
+}
+
+/* Slider Styling */
+input[type=range] {
+    width: 100%;
+    accent-color: #90caf9; /* Blaue Farbe für den Slider */
+    background: transparent;
+    cursor: pointer;
+}
+
+.slider-label {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 5px;
+    display: block;
+}

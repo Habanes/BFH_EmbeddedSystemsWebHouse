@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhaus Steuerung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Webhaus Control</h1>
+    <p id="status">Verbindung wird aufgebaut...</p>
+
+    <div class="section">
+        <h3>Klima</h3>
+        <div id="tempDisplay">-- °C</div>
+        
+        <div class="control-group">
+            <span class="control-label">Heizung</span>
+            <div>
+                <button class="on" onclick="send('<HeatOn>')">AN</button>
+                <button class="off" onclick="send('<HeatOff>')">AUS</button>
+            </div>
+        </div>
+        
+        <span class="slider-label">Soll-Temperatur</span>
+        <input type="range" min="15" max="30" onchange="sendTempRegler(this.value)">
+    </div>
+
+    <div class="section">
+        <h3>Beleuchtung</h3>
+        
+        <div class="control-group">
+            <span class="control-label">Wohnzimmer</span>
+            <div>
+                <button class="on" onclick="send('<L1on>')">AN</button>
+                <button class="off" onclick="send('<L1off>')">AUS</button>
+            </div>
+        </div>
+
+        <span class="slider-label">Helligkeit (Dimmer)</span>
+        <input type="range" min="0" max="100" onchange="sendDimmer(1, this.value)">
+    </div>
+
+    <div class="section">
+        <h3>Geräte & Sicherheit</h3>
+        
+        <div class="control-group">
+            <span class="control-label">Fernseher</span>
+            <div>
+                <button class="on" onclick="send('<TVon>')">AN</button>
+                <button class="off" onclick="send('<TVoff>')">AUS</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <span class="control-label">Alarmanlage</span>
+            <div>
+                <button class="on" onclick="send('<AlarmOn>')">AKTIV</button>
+                <button class="off" onclick="send('<AlarmOff>')">AUS</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

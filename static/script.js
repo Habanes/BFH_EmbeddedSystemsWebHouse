@@ -59,3 +59,11 @@ ws.onmessage = function(event) {
         document.getElementById("tempDisplay").innerHTML = temperatur + " °C";
     }
 };
+
+setInterval(function() {
+    if (ws.readyState === WebSocket.OPEN) {
+        // Wir senden einen "leeren" Befehl, damit der Server antwortet
+        // Der C-Server schickt bei JEDEM Befehl die Temperatur zurück.
+        ws.send("<GetStatus>"); 
+    }
+}, 2000);

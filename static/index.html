@@ -39,6 +39,14 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <span class="control-label">Küche (LED 2)</span>
+            <div>
+                <button class="on" onclick="send('<L2on>')">AN</button>
+                <button class="off" onclick="send('<L2off>')">AUS</button>
+            </div>
+        </div>
+
         <span class="slider-label">Helligkeit (Dimmer)</span>
         <input type="range" min="0" max="100" onchange="sendDimmer(1, this.value)">
     </div>

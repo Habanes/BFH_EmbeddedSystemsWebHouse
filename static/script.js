@@ -1,6 +1,8 @@
 // --- KONFIGURATION ---
 // WICHTIG: Ersetzen Sie diese IP mit der Ihres Raspberry Pi
-var ipAdresse = "192.168.1.100"; 
+// Wenn Sie das HTML lokal öffnen: IP-Adresse des Raspberry Pi
+// Wenn über Apache: "localhost" oder die IP
+var ipAdresse = "localhost"; 
 var port = "8000";
 
 // WebSocket Verbindung erstellen

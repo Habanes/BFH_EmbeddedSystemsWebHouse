@@ -264,9 +264,29 @@ void processCommand(char *command, int com_sock_id) {
     else if (strncmp(command, "<Dim1:", 6) == 0) {
         int wert = 0;
         if (sscanf(command, "<Dim1:%d>", &wert) == 1) {
-            printf("Dimmer set to: %d\n", wert);
-            // Je nach Pin-Belegung: dimRLamp oder dimSLamp
+            printf("Dimmer 1 set to: %d\n", wert);
             dimRLamp((uint16_t)wert); 
+        }
+    }
+    else if (strncmp(command, "<Dim2:", 6) == 0) {
+        int wert = 0;
+        if (sscanf(command, "<Dim2:%d>", &wert) == 1) {
+            printf("Dimmer 2 set to: %d\n", wert);
+            dimSLamp((uint16_t)wert);
+        }
+    }
+    else if (strncmp(command, "<SetTemp:", 9) == 0) {
+        int sollTemp = 0;
+        if (sscanf(command, "<SetTemp:%d>", &sollTemp) == 1) {
+            printf("Soll-Temperatur gesetzt: %d°C\n", sollTemp);
+            // Hier würde Temperaturregelung implementiert werden
+            // Für jetzt: Wenn aktuelle Temp < sollTemp -> Heizung an, sonst aus
+            float aktTemp = getTemp();
+            if (aktTemp < (float)sollTemp) {
+                turnHeatOn();
+            } else {
+                turnHeatOff();
+            }
         }
     }
 

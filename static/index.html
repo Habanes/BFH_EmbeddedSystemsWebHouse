@@ -47,8 +47,11 @@
             </div>
         </div>
 
-        <span class="slider-label">Helligkeit (Dimmer)</span>
-        <input type="range" min="0" max="100" onchange="sendDimmer(1, this.value)">
+        <span class="slider-label">Helligkeit Wohnzimmer</span>
+        <input type="range" min="0" max="100" value="50" onchange="sendDimmer(1, this.value)">
+        
+        <span class="slider-label">Helligkeit Küche</span>
+        <input type="range" min="0" max="100" value="50" onchange="sendDimmer(2, this.value)">
     </div>
 
     <div class="section">

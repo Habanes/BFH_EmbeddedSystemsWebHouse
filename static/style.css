@@ -1,8 +1,8 @@
-/* Grundlayout und Dark Mode Farben */
+/* Base layout and dark mode colors */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #121212; /* Sehr dunkles Grau als Hintergrund */
-    color: #e0e0e0; /* Helles Grau für Text */
+    background-color: #121212;
+    color: #e0e0e0;
     margin: 0;
     padding: 20px;
     display: flex;
@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    background-color: #1e1e1e; /* Karten-Hintergrund */
+    background-color: #1e1e1e;
     width: 100%;
     max-width: 450px;
     padding: 30px;
@@ -39,8 +39,8 @@ h1 {
     padding: 20px;
     border-radius: 6px;
     margin-bottom: 20px;
-    border-left: 4px solid #3d3d3d; /* Akzentlinie links */
-    border-bottom: 2.3px solid #3d3d3d; /* Akzentlinie links */
+    border-left: 4px solid #3d3d3d;
+    border-bottom: 2.3px solid #3d3d3d;
 }
 
 h3 {
@@ -50,7 +50,7 @@ h3 {
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #90caf9; /* Dezentes Blau für Überschriften */
+    color: #90caf9;
 }
 
 .control-group {
@@ -64,7 +64,7 @@ h3 {
     font-size: 15px;
 }
 
-/* Temperatur Anzeige */
+/* Temperature display */
 #tempDisplay {
     font-size: 36px;
     font-weight: 300;
@@ -87,7 +87,7 @@ button {
 }
 
 button.on {
-    background-color: #2e7d32; /* Gedämpftes Grün */
+    background-color: #2e7d32;
 }
 button.on:hover {
     background-color: #388e3c;
@@ -97,7 +97,7 @@ button.on:active {
 }
 
 button.off {
-    background-color: #c62828; /* Gedämpftes Rot */
+    background-color: #c62828;
     margin-left: 5px;
 }
 button.off:hover {
@@ -107,10 +107,10 @@ button.off:active {
     background-color: #b71c1c;
 }
 
-/* Slider Styling */
+/* Slider styling */
 input[type=range] {
     width: 100%;
-    accent-color: #90caf9; /* Blaue Farbe für den Slider */
+    accent-color: #90caf9;
     background: transparent;
     cursor: pointer;
 }
@@ -121,7 +121,7 @@ input[type=range] {
     margin-bottom: 5px;
     display: block;
 }
-/* Alarm Status Styling */
+/* Alarm status styling */
 .status-row {
     display: flex;
     gap: 10px;

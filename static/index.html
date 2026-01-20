@@ -1,77 +1,77 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webhaus Steuerung</title>
+    <title>Webhouse Control</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Webhaus Control</h1>
-    <p id="status">Verbindung wird aufgebaut...</p>
+    <h1>Webhouse Control</h1>
+    <p id="status">Connecting...</p>
 
     <div class="section">
-        <h3>Klima</h3>
+        <h3>Climate</h3>
         <div id="tempDisplay">-- °C</div>
         
         <div class="control-group">
-            <span class="control-label">Heizung</span>
+            <span class="control-label">Heater</span>
             <div>
-                <button class="on" onclick="send('<HeatOn>')">AN</button>
-                <button class="off" onclick="send('<HeatOff>')">AUS</button>
+                <button class="on" onclick="send('<HeatOn>')">ON</button>
+                <button class="off" onclick="send('<HeatOff>')">OFF</button>
             </div>
         </div>
         
         <div class="control-group">
-            <span class="control-label">Soll-Temperatur (°C)</span>
-            <input type="number" id="tempInput" min="15" max="30" value="20" onchange="sendTempRegler(this.value)" class="temp-input">
+            <span class="control-label">Target Temperature (°C)</span>
+            <input type="number" id="tempInput" min="15" max="30" value="20" onchange="sendTargetTemp(this.value)" class="temp-input">
         </div>
     </div>
 
     <div class="section">
-        <h3>Beleuchtung</h3>
+        <h3>Lighting</h3>
         
         <div class="control-group">
-            <span class="control-label">Wohnzimmer</span>
+            <span class="control-label">LED 1</span>
             <div>
-                <button class="on" onclick="send('<L1on>')">AN</button>
-                <button class="off" onclick="send('<L1off>')">AUS</button>
+                <button class="on" onclick="send('<L1on>')">ON</button>
+                <button class="off" onclick="send('<L1off>')">OFF</button>
             </div>
         </div>
 
         <div class="control-group">
-            <span class="control-label">Küche (LED 2)</span>
+            <span class="control-label">LED 2</span>
             <div>
-                <button class="on" onclick="send('<L2on>')">AN</button>
-                <button class="off" onclick="send('<L2off>')">AUS</button>
+                <button class="on" onclick="send('<L2on>')">ON</button>
+                <button class="off" onclick="send('<L2off>')">OFF</button>
             </div>
         </div>
 
-        <span class="slider-label">Helligkeit Wohnzimmer</span>
+        <span class="slider-label">Roof Lamp</span>
         <input type="range" min="0" max="100" value="50" onchange="sendDimmer(1, this.value)">
         
-        <span class="slider-label">Helligkeit Küche</span>
+        <span class="slider-label">Stand Lamp</span>
         <input type="range" min="0" max="100" value="50" onchange="sendDimmer(2, this.value)">
     </div>
 
     <div class="section">
-        <h3>Geräte & Sicherheit</h3>
+        <h3>Devices and Security</h3>
         
         <div class="control-group">
-            <span class="control-label">Fernseher</span>
+            <span class="control-label">TV</span>
             <div>
-                <button class="on" onclick="send('<TVon>')">AN</button>
-                <button class="off" onclick="send('<TVoff>')">AUS</button>
+                <button class="on" onclick="send('<TVon>')">ON</button>
+                <button class="off" onclick="send('<TVoff>')">OFF</button>
             </div>
         </div>
 
         <div class="control-group">
-            <span class="control-label">Alarmanlage</span>
+            <span class="control-label">Alarm</span>
             <div>
-                <button class="on" onclick="send('<AlarmOn>')">SCHARF</button>
-                <button class="off" onclick="send('<AlarmOff>')">UNSCHARF</button>
+                <button class="on" onclick="send('<AlarmOn>')">ARMED</button>
+                <button class="off" onclick="send('<AlarmOff>')">UNARMED</button>
             </div>
         </div>
         

@@ -1,78 +1,76 @@
-// --- KONFIGURATION ---
-// WICHTIG: Ersetzen Sie diese IP mit der Ihres Raspberry Pi
-// Wenn Sie das HTML lokal öffnen: IP-Adresse des Raspberry Pi
-// Wenn über Apache: "localhost" oder die IP
-var ipAdresse = "172.20.10.2"; 
+// Configuration
+// IMPORTANT: Replace this IP with your Raspberry Pi's IP address
+var ipAddress = "172.20.10.2"; 
 var port = "8000";
 
-// WebSocket Verbindung erstellen
-var ws = new WebSocket("ws://" + ipAdresse + ":" + port);
+// Create WebSocket connection
+var ws = new WebSocket("ws://" + ipAddress + ":" + port);
 
 var statusText = document.getElementById("status");
 
-// 1. Verbindung erfolgreich
+// Connection successful
 ws.onopen = function() {
-    statusText.innerHTML = "System verbunden";
-    statusText.style.color = "#4caf50"; // Helles Grün für Text
+    statusText.innerHTML = "System connected";
+    statusText.style.color = "#4caf50";
 };
 
-// 2. Fehlerbehandlung
+// Error handling
 ws.onerror = function() {
-    statusText.innerHTML = "Verbindungsfehler";
-    statusText.style.color = "#f44336"; // Helles Rot für Text
+    statusText.innerHTML = "Connection error";
+    statusText.style.color = "#f44336";
 };
 
-// 3. Verbindung geschlossen
+// Connection closed
 ws.onclose = function() {
-    statusText.innerHTML = "Verbindung getrennt";
+    statusText.innerHTML = "Connection closed";
     statusText.style.color = "#888";
 };
 
-// 4. Funktion zum Senden (Client -> Server)
-function send(befehl) {
+// Send command to server
+function send(command) {
     if (ws.readyState === WebSocket.OPEN) {
-        ws.send(befehl);
-        console.log("Gesendet: " + befehl);
+        ws.send(command);
+        console.log("Sent: " + command);
     } else {
-        alert("Keine Verbindung zum Server!");
+        alert("No connection to server!");
     }
 }
 
-// Hilfsfunktion für Dimmer
-function sendDimmer(lampe, wert) {
-    var befehl = "<Dim" + lampe + ":" + wert + ">";
-    send(befehl);
+// Send dimmer command
+function sendDimmer(lamp, value) {
+    var command = "<Dim" + lamp + ":" + value + ">";
+    send(command);
 }
 
-// Hilfsfunktion für Temp-Regler
-function sendTempRegler(wert) {
-    var befehl = "<SetTemp:" + wert + ">";
-    send(befehl);
+// Send target temperature command
+function sendTargetTemp(value) {
+    var command = "<SetTemp:" + value + ">";
+    send(command);
 }
 
-// 5. Nachricht empfangen (Server -> Client)
+// Receive message from server
 ws.onmessage = function(event) {
-    var nachricht = event.data;
-    console.log("Empfangen: " + nachricht);
+    var message = event.data;
+    console.log("Received: " + message);
 
     // Parse response: "Temp:22.5;AlarmArmed:1;AlarmTriggered:0"
-    var parts = nachricht.split(";");
+    var parts = message.split(";");
     
     for (var i = 0; i < parts.length; i++) {
         if (parts[i].includes("Temp:")) {
-            var temperatur = parts[i].split(":")[1]; 
-            document.getElementById("tempDisplay").innerHTML = temperatur + " °C";
+            var temperature = parts[i].split(":")[1]; 
+            document.getElementById("tempDisplay").innerHTML = temperature + " °C";
         }
         else if (parts[i].includes("AlarmArmed:")) {
             var armed = parts[i].split(":")[1];
             var statusElement = document.getElementById("alarmArmedStatus");
             if (armed === "1") {
-                statusElement.innerHTML = "SCHARF";
-                statusElement.style.backgroundColor = "#ff9800"; // Orange
+                statusElement.innerHTML = "ARMED";
+                statusElement.style.backgroundColor = "#ff9800";
                 statusElement.style.color = "#fff";
             } else {
-                statusElement.innerHTML = "UNSCHARF";
-                statusElement.style.backgroundColor = "#4caf50"; // Green
+                statusElement.innerHTML = "UNARMED";
+                statusElement.style.backgroundColor = "#4caf50";
                 statusElement.style.color = "#fff";
             }
         }
@@ -81,21 +79,20 @@ ws.onmessage = function(event) {
             var triggerElement = document.getElementById("alarmTrigger");
             if (triggered === "1") {
                 triggerElement.innerHTML = "ALARM!";
-                triggerElement.style.backgroundColor = "#f44336"; // Red
+                triggerElement.style.backgroundColor = "#f44336";
                 triggerElement.style.color = "#fff";
             } else {
                 triggerElement.innerHTML = "OK";
-                triggerElement.style.backgroundColor = "#4caf50"; // Green
+                triggerElement.style.backgroundColor = "#4caf50";
                 triggerElement.style.color = "#fff";
             }
         }
     }
 };
 
+// Poll server every 2 seconds for status updates
 setInterval(function() {
     if (ws.readyState === WebSocket.OPEN) {
-        // Wir senden einen "leeren" Befehl, damit der Server antwortet
-        // Der C-Server schickt bei JEDEM Befehl die Temperatur zurück.
         ws.send("<GetStatus>"); 
     }
 }, 2000);

@@ -121,3 +121,41 @@ input[type=range] {
     margin-bottom: 5px;
     display: block;
 }
+/* Alarm Status Styling */
+.status-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.status-box {
+    flex: 1;
+    background-color: #1e1e1e;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    padding: 12px;
+    text-align: center;
+}
+
+.status-label {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-value {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.alarm-indicator {
+    display: block;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 14px;
+}

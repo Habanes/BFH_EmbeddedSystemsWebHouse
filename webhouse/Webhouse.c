@@ -89,6 +89,7 @@ static void * threadDimSLamp(void *pdata);
 static pthread_t pThreadTemp;
 static int stateHeiz = HEIZ_OFF;
 static float localTemp = 16.0;
+static int alarmArmed = 0;  // 0 = disarmed, 1 = armed
 #ifndef PWM
 static pthread_t pThreadDimRLamp;
 static pthread_t pThreadDimSLamp;
@@ -440,6 +441,50 @@ float getTemp(void){
 int getAlarmState(void){
     uint8_t value = bcm2835_gpio_lev(GPIO_Alarm);
     return value;
+}
+
+/*******************************************************************************
+ *  function :    armAlarm
+ ******************************************************************************/
+/** \brief        Arm the alarm system
+ *
+ *  \type         global
+ *
+ *  \return       void
+ *
+ ******************************************************************************/
+void armAlarm(void){
+    alarmArmed = 1;
+    printf("Alarm armed\n");
+}
+
+/*******************************************************************************
+ *  function :    disarmAlarm
+ ******************************************************************************/
+/** \brief        Disarm the alarm system
+ *
+ *  \type         global
+ *
+ *  \return       void
+ *
+ ******************************************************************************/
+void disarmAlarm(void){
+    alarmArmed = 0;
+    printf("Alarm disarmed\n");
+}
+
+/*******************************************************************************
+ *  function :    getAlarmArmedState
+ ******************************************************************************/
+/** \brief        Get whether alarm is armed or disarmed
+ *
+ *  \type         global
+ *
+ *  \return       1 for armed, 0 for disarmed
+ *
+ ******************************************************************************/
+int getAlarmArmedState(void){
+    return alarmArmed;
 }
 
 /*******************************************************************************

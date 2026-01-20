@@ -237,13 +237,10 @@ void processCommand(char *command, int com_sock_id) {
         turnTVOff();
     }
     else if (strstr(command, "<AlarmOn>") != NULL) {
-        // Falls Funktion in Webhouse.h existiert, sonst Dummy
-        // turnAlarmOn(); 
-        printf("Alarm aktiviert\n");
+        armAlarm();
     }
     else if (strstr(command, "<AlarmOff>") != NULL) {
-        // turnAlarmOff();
-        printf("Alarm deaktiviert\n");
+        disarmAlarm();
     }
     else if (strstr(command, "<L2on>") != NULL) {
         printf("LED 2 Ein\n");
@@ -294,11 +291,13 @@ void processCommand(char *command, int com_sock_id) {
     // Das PDF empfiehlt eine Bestätigung "<Command executed>" [cite: 404]
     // Optional: Wir hängen die Temperatur an, damit das JS Display funktioniert.
     
-    char response_raw[50];
+    char response_raw[100];
     float temp = getTemp(); // Temperatur lesen
+    int alarmArmed = getAlarmArmedState(); // Alarm bewaffnet?
+    int alarmTriggered = getAlarmState(); // Alarm ausgelöst?
     
-    // Wir senden Bestätigung UND Temperatur im Format, das dein JS versteht ("Temp:XX")
-    sprintf(response_raw, "CmdOK;Temp:%.1f", temp);
+    // Sende: Temperatur, AlarmArmed, AlarmTriggered
+    sprintf(response_raw, "Temp:%.1f;AlarmArmed:%d;AlarmTriggered:%d", temp, alarmArmed, alarmTriggered);
     
     // Antwort für WebSocket codieren (Muss sein!) [cite: 375]
     char codedResponse[strlen(response_raw) + 10]; // Etwas Puffer

@@ -68,8 +68,19 @@
         <div class="control-group">
             <span class="control-label">Alarmanlage</span>
             <div>
-                <button class="on" onclick="send('<AlarmOn>')">AKTIV</button>
-                <button class="off" onclick="send('<AlarmOff>')">AUS</button>
+                <button class="on" onclick="send('<AlarmOn>')">SCHARF</button>
+                <button class="off" onclick="send('<AlarmOff>')">UNSCHARF</button>
+            </div>
+        </div>
+        
+        <div class="status-row">
+            <div class="status-box">
+                <span class="status-label">Status:</span>
+                <span id="alarmArmedStatus" class="status-value">--</span>
+            </div>
+            <div class="status-box">
+                <span class="status-label">Alarm:</span>
+                <span id="alarmTrigger" class="alarm-indicator">OK</span>
             </div>
         </div>
     </div>

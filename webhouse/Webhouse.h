@@ -33,5 +33,8 @@ extern int  getHeatState(void);
 extern float getTemp(void);
 
 extern int getAlarmState(void);
+extern void armAlarm(void);
+extern void disarmAlarm(void);
+extern int getAlarmArmedState(void);
 
 #endif

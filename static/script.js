@@ -55,10 +55,40 @@ ws.onmessage = function(event) {
     var nachricht = event.data;
     console.log("Empfangen: " + nachricht);
 
-    // Temperatur parsen (Erwartet Format "Temp:22.5")
-    if (nachricht.includes("Temp:")) {
-        var temperatur = nachricht.split(":")[1]; 
-        document.getElementById("tempDisplay").innerHTML = temperatur + " °C";
+    // Parse response: "Temp:22.5;AlarmArmed:1;AlarmTriggered:0"
+    var parts = nachricht.split(";");
+    
+    for (var i = 0; i < parts.length; i++) {
+        if (parts[i].includes("Temp:")) {
+            var temperatur = parts[i].split(":")[1]; 
+            document.getElementById("tempDisplay").innerHTML = temperatur + " °C";
+        }
+        else if (parts[i].includes("AlarmArmed:")) {
+            var armed = parts[i].split(":")[1];
+            var statusElement = document.getElementById("alarmArmedStatus");
+            if (armed === "1") {
+                statusElement.innerHTML = "SCHARF";
+                statusElement.style.color = "#ff9800"; // Orange
+                statusElement.style.fontWeight = "bold";
+            } else {
+                statusElement.innerHTML = "UNSCHARF";
+                statusElement.style.color = "#888";
+                statusElement.style.fontWeight = "normal";
+            }
+        }
+        else if (parts[i].includes("AlarmTriggered:")) {
+            var triggered = parts[i].split(":")[1];
+            var triggerElement = document.getElementById("alarmTrigger");
+            if (triggered === "1") {
+                triggerElement.innerHTML = "ALARM!";
+                triggerElement.style.backgroundColor = "#f44336"; // Red
+                triggerElement.style.color = "#fff";
+            } else {
+                triggerElement.innerHTML = "OK";
+                triggerElement.style.backgroundColor = "#4caf50"; // Green
+                triggerElement.style.color = "#fff";
+            }
+        }
     }
 };
 

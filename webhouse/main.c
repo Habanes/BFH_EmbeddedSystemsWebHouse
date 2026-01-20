@@ -219,7 +219,7 @@ void processCommand(char *command, int com_sock_id) {
     // Mapping der HTML Befehle auf Webhouse.h Funktionen
     
     if (strstr(command, "<HeatOn>") != NULL) {
-        turnHeaton();
+        turnHeatOn();
     } 
     else if (strstr(command, "<HeatOff>") != NULL) {
         turnHeatOff();

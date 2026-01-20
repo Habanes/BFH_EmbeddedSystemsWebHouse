@@ -1,0 +1,51 @@
+BFH_EmbeddedSystemsWebHouse
+│   .gitignore
+│   instructions.txt
+│   README.md
+│
+├───src
+│       main.c
+│       Makefile_Test
+│       test_hardware.c
+│
+├───static
+│       index.html
+│       script.js
+│       style.css
+│
+└───templates
+    ├───hterm-windows
+    │       CHANGELOG.txt
+    │       hterm.exe
+    │       LICENSE.TXT
+    │
+    ├───Linux_Startup_Scripts
+    │       dhcpcd.conf
+    │       emailNotify.sh
+    │       Installation Guide.txt
+    │       ip_address.txt
+    │       mailing.py
+    │       rc.local
+    │       startTemplate.sh
+    │
+    ├───TCP Term
+    │       TCP Term.html
+    │
+    └───WebHouseTemplate
+            base64.c
+            base64.h
+            base64.o
+            handshake.c
+            handshake.h
+            handshake.o
+            jansson.h
+            main.c
+            main.o
+            Makefile
+            sha1.c
+            sha1.h
+            sha1.o
+            Template
+            Webhouse.c
+            Webhouse.h
+            Webhouse.o

@@ -2,7 +2,7 @@
 // WICHTIG: Ersetzen Sie diese IP mit der Ihres Raspberry Pi
 // Wenn Sie das HTML lokal öffnen: IP-Adresse des Raspberry Pi
 // Wenn über Apache: "localhost" oder die IP
-var ipAdresse = "localhost"; 
+var ipAdresse = "172.20.10.2 "; 
 var port = "8000";
 
 // WebSocket Verbindung erstellen
@@ -68,12 +68,12 @@ ws.onmessage = function(event) {
             var statusElement = document.getElementById("alarmArmedStatus");
             if (armed === "1") {
                 statusElement.innerHTML = "SCHARF";
-                statusElement.style.color = "#ff9800"; // Orange
-                statusElement.style.fontWeight = "bold";
+                statusElement.style.backgroundColor = "#ff9800"; // Orange
+                statusElement.style.color = "#fff";
             } else {
                 statusElement.innerHTML = "UNSCHARF";
-                statusElement.style.color = "#888";
-                statusElement.style.fontWeight = "normal";
+                statusElement.style.backgroundColor = "#4caf50"; // Green
+                statusElement.style.color = "#fff";
             }
         }
         else if (parts[i].includes("AlarmTriggered:")) {

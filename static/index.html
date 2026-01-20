@@ -24,8 +24,10 @@
             </div>
         </div>
         
-        <span class="slider-label">Soll-Temperatur</span>
-        <input type="range" min="15" max="30" onchange="sendTempRegler(this.value)">
+        <div class="control-group">
+            <span class="control-label">Soll-Temperatur (°C)</span>
+            <input type="number" id="tempInput" min="15" max="30" value="20" onchange="sendTempRegler(this.value)" class="temp-input">
+        </div>
     </div>
 
     <div class="section">
@@ -76,7 +78,7 @@
         <div class="status-row">
             <div class="status-box">
                 <span class="status-label">Status:</span>
-                <span id="alarmArmedStatus" class="status-value">--</span>
+                <span id="alarmArmedStatus" class="alarm-indicator">--</span>
             </div>
             <div class="status-box">
                 <span class="status-label">Alarm:</span>
